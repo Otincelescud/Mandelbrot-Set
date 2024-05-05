@@ -6,6 +6,8 @@
 
 #define WIDTH 600
 #define HEIGHT 600
+#define FPS 60
+#define FRAME_DELAY 1000 / FPS
 
 App *app = nullptr;
 
@@ -25,6 +27,9 @@ void start_app() {
         app->update();
         app->render();
     }
+
+    frame_time = SDL_GetTicks() - frame_start;
+    if (frame_time < FRAME_DELAY) SDL_Delay(FRAME_DELAY - frame_time);
 
     app->clean();
 }
