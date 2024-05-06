@@ -25,13 +25,13 @@ In order to build the executable to run this programm run the following command:
 
 #### On Windows
 ```
-g++ src\main.cpp src\app.cpp -O3 -o ".\build\Run\Mandelbrot Set.exe" -I "[Path to SDL2 include directory]" -L "[Path to SDL2 lib directory]" -lSDL2 -mwindows
+g++ src\main.cpp src\app.cpp src\complex.cpp -O3 -o ".\build\Run\Mandelbrot Set.exe" -I "[Path to SDL2 include directory]" -L "[Path to SDL2 lib directory]" -lSDL2 -mwindows
 ".\build\Run\Mandelbrot Set.exe"
 ```
 
 #### On Linux
 ```
-g++ src/main.cpp src/app.cpp -O3 -o "./build/Run/Mandelbrot Set.out" -lSDL2
+g++ src/main.cpp src/app.cpp src/complex.cpp -O3 -o "./build/Run/Mandelbrot Set.out" -lSDL2
 "./build/Run/Mandelbrot Set.out"
 ```
 
