@@ -5,12 +5,13 @@
 
 class App {
 public:
-    App();
+    App(const int WIDTH, const int HEIGHT);
     ~App();
 
-    void init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen);
+    void init(const char *title, int xpos, int ypos, bool fullscreen);
 
     void handle_events();
+    void set_pixel_color(int x, int y, int r, int g, int b);
     void update();
     void render();
     void clean();
@@ -21,6 +22,8 @@ private:
     bool is_running;
     SDL_Window *window;
     SDL_Renderer *renderer;
+    const int WIDTH;
+    const int HEIGHT;
     int cnt;
 };
 

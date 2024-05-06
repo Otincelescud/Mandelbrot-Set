@@ -1,18 +1,17 @@
 #include "app.h"
 
-App::App() {}
+App::App(const int width, const int height) : WIDTH(width), HEIGHT(height) {}
 App::~App() {}
 
-void App::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen) {
+void App::init(const char *title, int xpos, int ypos, bool fullscreen) {
     int flags = 0;
     if (fullscreen) flags = SDL_WINDOW_FULLSCREEN;
 
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
 
-        window = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
+        window = SDL_CreateWindow(title, xpos, ypos, WIDTH, HEIGHT, flags);
 
         renderer = SDL_CreateRenderer(window, -1, 0);
-        if (renderer) SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
 
         cnt = 0;
         is_running = true;
@@ -30,6 +29,11 @@ void App::handle_events() {
         default:
             break;
     }
+}
+
+void App::set_pixel_color(int pixel_x, int pixel_y, int r, int g, int b) {
+    SDL_SetRenderDrawColor(renderer, r, g, b, 255);
+    SDL_RenderDrawPoint(renderer, pixel_x, pixel_y);
 }
 
 void App::update() {

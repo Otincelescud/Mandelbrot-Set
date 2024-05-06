@@ -15,9 +15,9 @@ Uint32 frame_start;
 int frame_time;
 
 void start_app() {
-    app = new App();
+    app = new App(WIDTH, HEIGHT);
 
-    app->init("Air Hockey", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, false);
+    app->init("Air Hockey", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, false);
 
     while (app->running()) {
 
