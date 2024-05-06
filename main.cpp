@@ -17,7 +17,7 @@ int frame_time;
 void start_app() {
     app = new App(WIDTH, HEIGHT);
 
-    app->init("Air Hockey", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, false);
+    app->init("The Mandelbrot Set", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, false);
 
     while (app->running()) {
 
