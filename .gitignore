@@ -36,3 +36,6 @@
 
 # Build Directory
 build
+
+# Testing Directory
+tests
