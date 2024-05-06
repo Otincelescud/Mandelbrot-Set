@@ -36,12 +36,22 @@ void App::set_pixel_color(int pixel_x, int pixel_y, int r, int g, int b) {
     SDL_RenderDrawPoint(renderer, pixel_x, pixel_y);
 }
 
+// This function is subject to change
+void App::set_background() {
+    for (int pixel_y = 0; pixel_y < HEIGHT; pixel_y++) {
+        for (int pixel_x = 0; pixel_x < WIDTH; pixel_x++) {
+            set_pixel_color(pixel_x, pixel_y, pixel_x*255/(WIDTH-1), pixel_y*255/(HEIGHT-1), 0);
+        }
+    }
+}
+
 void App::update() {
     cnt++;
 }
 
 void App::render() {
     SDL_RenderClear(renderer);
+    set_background();
     // Render
     SDL_RenderPresent(renderer);
 }

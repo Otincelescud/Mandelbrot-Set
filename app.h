@@ -12,6 +12,7 @@ public:
 
     void handle_events();
     void set_pixel_color(int x, int y, int r, int g, int b);
+    void set_background();
     void update();
     void render();
     void clean();
