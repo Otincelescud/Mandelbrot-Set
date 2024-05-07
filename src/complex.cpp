@@ -1,4 +1,5 @@
 #include "complex.h"
+#include <cmath>
 
 Complex::Complex(long double r, long double i) { real = r; imaginary= i; }
 Complex::~Complex() {}
@@ -21,3 +22,5 @@ Complex Complex::operator/(Complex complex_num) {
     return Complex((real*complex_num.getReal() + imaginary*complex_num.getImaginary())/(complex_num.getReal()*complex_num.getReal() + complex_num.getImaginary()*complex_num.getImaginary()),
                    (imaginary*complex_num.getImaginary() - real*complex_num.getReal())/(complex_num.getReal()*complex_num.getReal() + complex_num.getImaginary()*complex_num.getImaginary()));
 }
+
+const long double Complex::modulus() { return sqrt(real*real + imaginary*imaginary); }

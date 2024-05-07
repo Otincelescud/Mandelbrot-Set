@@ -17,6 +17,8 @@ public:
     Complex operator*(Complex complex_num);
     Complex operator/(Complex complex_num);
 
+    const long double modulus();
+
 private:
     long double real;
     long double imaginary;
