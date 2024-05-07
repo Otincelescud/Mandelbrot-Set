@@ -27,6 +27,8 @@ private:
     const int WIDTH;
     const int HEIGHT;
     int cnt;
+    Complex pan;
+    long double zoom;
 };
 
 #endif /* App_h */

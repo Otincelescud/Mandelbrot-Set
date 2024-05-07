@@ -3,6 +3,7 @@
 
 class Complex {
 public:
+    Complex();
     Complex(long double r, long double i);
     ~Complex();
 

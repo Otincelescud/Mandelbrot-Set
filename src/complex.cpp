@@ -1,6 +1,7 @@
 #include "complex.h"
 #include <cmath>
 
+Complex::Complex() {}
 Complex::Complex(long double r, long double i) { real = r; imaginary= i; }
 Complex::~Complex() {}
 
