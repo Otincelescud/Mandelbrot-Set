@@ -1,25 +1,25 @@
 #ifndef Complex_h
 #define Complex_h
 
-template<typename T> class Complex {
+class Complex {
 public:
-    Complex(T r, T i);
+    Complex(long double r, long double i);
     ~Complex();
 
-    void setReal(T r);
-    void setImaginary(T i);
+    void setReal(long double r);
+    void setImaginary(long double i);
 
-    T getReal();
-    T getImaginary();
+    long double getReal();
+    long double getImaginary();
 
-    Complex<T> operator+(Complex<T> complex_num);
-    Complex<T> operator-(Complex<T> complex_num);
-    Complex<T> operator*(Complex<T> complex_num);
-    Complex<T> operator/(Complex<T> complex_num);
+    Complex operator+(Complex complex_num);
+    Complex operator-(Complex complex_num);
+    Complex operator*(Complex complex_num);
+    Complex operator/(Complex complex_num);
 
 private:
-    T real;
-    T imaginary;
+    long double real;
+    long double imaginary;
 };
 
 #endif /* Complex_h */
