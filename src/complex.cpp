@@ -14,10 +14,10 @@ template<typename T> Complex<T> Complex<T>::operator-(Complex<T> complex_num) { 
 
 template<typename T> Complex<T> Complex<T>::operator*(Complex<T> complex_num) {
     return Complex(real*complex_num.getReal() - imaginary*complex_num.getImaginary(),
-                   real*complex_num.getImaginary() + imaginary*complex_num.getReal())
+                   real*complex_num.getImaginary() + imaginary*complex_num.getReal());
 }
 
 template<typename T> Complex<T> Complex<T>::operator/(Complex<T> complex_num) {
     return Complex((real*complex_num.getReal() + imaginary*complex_num.getImaginary())/(complex_num.getReal()*complex_num.getReal() + complex_num.getImaginary()*complex_num.getImaginary()),
-                   (imaginary*complex_num.getImaginary() - real*complex_num.getReal())/(complex_num.getReal()*complex_num.getReal() + complex_num.getImaginary()*complex_num.getImaginary()))
+                   (imaginary*complex_num.getImaginary() - real*complex_num.getReal())/(complex_num.getReal()*complex_num.getReal() + complex_num.getImaginary()*complex_num.getImaginary()));
 }
