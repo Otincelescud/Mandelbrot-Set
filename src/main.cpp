@@ -27,10 +27,11 @@ void start_app() {
         app->handle_events();
         app->update();
         app->render();
-    }
 
-    frame_time = SDL_GetTicks() - frame_start;
-    if (frame_time < FRAME_DELAY) SDL_Delay(FRAME_DELAY - frame_time);
+        frame_time = SDL_GetTicks() - frame_start;
+        if (frame_time < FRAME_DELAY) SDL_Delay(FRAME_DELAY - frame_time);
+
+    }
 
     app->clean();
 }
