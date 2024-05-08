@@ -6,7 +6,7 @@
 
 class App {
 public:
-    App(const int WIDTH, const int HEIGHT);
+    App(const int WIDTH, const int HEIGHT, const int max_iterations);
     ~App();
 
     void init(const char *title, int xpos, int ypos, bool fullscreen);
@@ -14,6 +14,7 @@ public:
     void handle_events();
     void set_pixel_color(int x, int y, int r, int g, int b);
     void set_background();
+    void draw_mandelbrot_set(int max_iterations);
     void update();
     void render();
     void clean();
@@ -26,6 +27,7 @@ private:
     SDL_Renderer *renderer;
     const int WIDTH;
     const int HEIGHT;
+    const int MAX_ITERATIONS;
     int cnt;
     Complex pan;
     long double zoom;

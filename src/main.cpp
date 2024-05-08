@@ -4,10 +4,11 @@
 
 #include "app.h"
 
-#define WIDTH 600
-#define HEIGHT 600
+#define WIDTH 900
+#define HEIGHT 900
 #define FPS 60
 #define FRAME_DELAY 1000 / FPS
+#define MAX_ITERATIONS 100
 
 App *app = nullptr;
 
@@ -15,7 +16,7 @@ Uint32 frame_start;
 int frame_time;
 
 void start_app() {
-    app = new App(WIDTH, HEIGHT);
+    app = new App(WIDTH, HEIGHT, MAX_ITERATIONS);
 
     app->init("The Mandelbrot Set", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, false);
 
