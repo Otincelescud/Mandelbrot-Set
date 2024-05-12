@@ -12,9 +12,8 @@ public:
     void init(const char *title, int xpos, int ypos, bool fullscreen);
 
     void handle_events();
-    void set_pixel_color(int x, int y, int r, int g, int b);
+    void set_pixel_color(SDL_Surface* surface, int x, int y, int r, int g, int b);
     void set_background();
-    void draw_mandelbrot_set(int max_iterations);
     void update();
     void render();
     void clean();
@@ -25,6 +24,8 @@ private:
     bool is_running;
     SDL_Window *window;
     SDL_Renderer *renderer;
+    SDL_Surface *screen_surface;
+    SDL_Texture *tex;
     const int WIDTH;
     const int HEIGHT;
     const int MAX_ITERATIONS;
