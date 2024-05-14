@@ -39,3 +39,9 @@ build
 
 # Testing Directory
 tests
+
+# Additional Dependencies Directory
+dependencies
+
+# Glad.c File
+glad.c
