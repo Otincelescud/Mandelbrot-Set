@@ -37,33 +37,9 @@ void App::handle_events() {
     }
 }
 
-void App::set_pixel_color(SDL_Surface* surface, int pixel_x, int pixel_y, int r, int g, int b) {
-    Uint32 *pixel = (Uint32*)((Uint8*)surface->pixels + pixel_y * surface->pitch + pixel_x * sizeof(Uint32));
-    *pixel = SDL_MapRGB(surface->format, r, g, b);
-}
-
 // This function is subject to change
 void App::set_background() {
-    SDL_LockSurface(screen_surface);
 
-    Complex *cnum = new Complex();
-    for (int pixel_y = 0; pixel_y < HEIGHT; pixel_y++) {
-        for (int pixel_x = 0; pixel_x < WIDTH; pixel_x++) {
-
-            // Associates a complex number to each pixel
-            MdbSetMath::px_pos_to_cnum(&pixel_x, &pixel_y, &pan, &zoom, cnum);
-
-            // Set pixel to black if it's part of Mandelbrot Set
-            if (MdbSetMath::is_part_of_mdb_set(cnum, MAX_ITERATIONS)) set_pixel_color(screen_surface, pixel_x, pixel_y, 0, 0, 0);
-
-            // The higher the abs of the real value of the complex num, the more green the pixel associated with this value is
-            // The higher the abs of the imaginary value of the complex num, the more red the pixel associated with this value is
-            else set_pixel_color(screen_surface, pixel_x, pixel_y, int(255.0 - 255.0/(abs(cnum->getReal()*0.75)+1)), int(255.0 - 255.0/(abs(cnum->getImaginary()*0.75)+1)), 0);
-        }
-    }
-    delete cnum;
-
-    SDL_UnlockSurface(screen_surface);
 }
 
 void App::update() {
