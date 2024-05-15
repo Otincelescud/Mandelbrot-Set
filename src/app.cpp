@@ -9,14 +9,20 @@ void App::init(const char *title, int xpos, int ypos, bool fullscreen) {
 
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
 
-        window = SDL_CreateWindow(title, xpos, ypos, WIDTH, HEIGHT, flags);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
-        renderer = SDL_CreateRenderer(window, -1, 0);
+        window = SDL_CreateWindow(title, xpos, ypos, WIDTH, HEIGHT, flags | SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+
+        SDL_GLContext glContext = SDL_GL_CreateContext(window);
+
+        if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress)) {
+            SDL_Log("Failed to initialize OpenGL context.");
+        }
 
         cnt = 0;
         is_running = true;
-
-        screen_surface = SDL_CreateRGBSurface(0, WIDTH, HEIGHT, 32, 0, 0, 0, 0);
     }
     else is_running = false;
 
@@ -44,20 +50,18 @@ void App::set_background() {
 
 void App::update() {
     cnt++;
-    set_background();
-    tex = SDL_CreateTextureFromSurface(renderer, screen_surface);
 }
 
 void App::render() {
-    SDL_RenderCopy(renderer, tex, NULL, NULL);
-    SDL_RenderPresent(renderer);
+    glClearColor(0.5f, 0.1f, 0.5f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    SDL_GL_SwapWindow(window);
 }
 
 void App::clean() {
-    SDL_DestroyTexture(tex);
-    SDL_FreeSurface(screen_surface);
+    SDL_GL_DeleteContext(glContext);
     SDL_DestroyWindow(window);
-    SDL_DestroyRenderer(renderer);
     SDL_Quit();
 }
 

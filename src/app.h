@@ -24,9 +24,7 @@ public:
 private:
     bool is_running;
     SDL_Window *window;
-    SDL_Renderer *renderer;
-    SDL_Surface *screen_surface;
-    SDL_Texture *tex;
+    SDL_GLContext glContext;
     const int WIDTH;
     const int HEIGHT;
     const int MAX_ITERATIONS;
