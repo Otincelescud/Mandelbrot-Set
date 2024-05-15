@@ -16,8 +16,10 @@ Controls:
 ### Requirements
 
 - [sdl 2.30.3](https://www.libsdl.org/)
+- [glad](https://glad.dav1d.de/) for OpenGL of version at least 3.3
 
 In order to install SDL2 follow the link above and follow the instructions on the Official SDL2 Website.
+In order to install glad generate the package on the [website](https://glad.dav1d.de/) then move the include/glad and include/KHM dirs to your include path and the move the src/glad.c file to the root of the project directory.
 
 ### Building and Running
 
@@ -25,15 +27,17 @@ In order to build the executable to run this programm run the following command:
 
 #### On Windows
 ```
-g++ src\main.cpp src\app.cpp src\complex.cpp src\mdb_set_math.cpp -O3 -o ".\build\Run\Mandelbrot Set.exe" -I "[Path to SDL2 include directory]" -L "[Path to SDL2 lib directory]" -lSDL2 -mwindows
+g++ src\main.cpp src\app.cpp src\complex.cpp src\mdb_set_math.cpp glad.c -O3 -o ".\build\Run\Mandelbrot Set.exe" -I "[Path to SDL2 include directory]" -L "[Path to SDL2 lib directory]" -lSDL2 -lGL -mwindows
 ".\build\Run\Mandelbrot Set.exe"
 ```
 
 #### On Linux
 ```
-g++ src/main.cpp src/app.cpp src/complex.cpp src/mdb_set_math.cpp -O3 -o "./build/Run/Mandelbrot Set.out" -lSDL2
+g++ src/main.cpp src/app.cpp src/complex.cpp src/mdb_set_math.cpp glad.c -O3 -o "./build/Run/Mandelbrot Set.out" -lSDL2 -lGL
 "./build/Run/Mandelbrot Set.out"
 ```
+
+*If you're having trouble building the program on Linux here are some flags that might help:* -lglfw3 -lGL -lX11 -lpthread -lXrandr -lXi -ldl
 
 ## License
 
