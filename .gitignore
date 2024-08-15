@@ -40,8 +40,9 @@ build
 # Testing Directory
 tests
 
-# Additional Dependencies Directory
-dependencies
+# Additional Dependencies Directories
+glad
+KHR
 
 # Glad.c File
 glad.c
