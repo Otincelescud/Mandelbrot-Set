@@ -1,6 +1,8 @@
 #ifndef Complex_h
 #define Complex_h
 
+#include <cmath>
+
 class Complex {
 public:
     Complex();

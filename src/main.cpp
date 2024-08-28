@@ -18,7 +18,7 @@ int frame_time;
 void start_app() {
     app = new App(WIDTH, HEIGHT, MAX_ITERATIONS);
 
-    app->init("The Mandelbrot Set", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, false);
+    if (!app->init("The Mandelbrot Set", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, false)) return;
 
     while (app->running()) {
 
@@ -26,7 +26,7 @@ void start_app() {
 
         app->handle_events();
         app->update();
-        app->render();
+        GPU_Graphics::render();
 
         frame_time = SDL_GetTicks() - frame_start;
         if (frame_time < FRAME_DELAY) SDL_Delay(FRAME_DELAY - frame_time);
@@ -34,6 +34,7 @@ void start_app() {
     }
 
     app->clean();
+    delete app;
 }
 
 /*#ifdef __WIN32
