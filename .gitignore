@@ -41,6 +41,7 @@ build
 tests
 
 # Additional Dependencies Directories
+dependencies
 glad
 KHR
 
