@@ -9,6 +9,7 @@
 #define FPS 60
 #define FRAME_DELAY 1000 / FPS
 #define MAX_ITERATIONS 100
+#define FULLSCREEN false
 
 App *app = nullptr;
 
@@ -18,7 +19,7 @@ int frame_time;
 void start_app() {
     app = new App(WIDTH, HEIGHT, MAX_ITERATIONS);
 
-    if (!app->init("The Mandelbrot Set", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, false)) return;
+    if (!app->init("The Mandelbrot Set", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, FULLSCREEN)) return;
 
     while (app->running()) {
 
@@ -26,7 +27,7 @@ void start_app() {
 
         app->handle_events();
         app->update();
-        GPU_Graphics::render();
+        app->render();
 
         frame_time = SDL_GetTicks() - frame_start;
         if (frame_time < FRAME_DELAY) SDL_Delay(FRAME_DELAY - frame_time);
