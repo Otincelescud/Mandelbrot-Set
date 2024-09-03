@@ -2,10 +2,15 @@
 #define App_h
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <iostream>
 #include <glad/glad.h>
+#include <fstream>
+#include <string>
+#include <sstream>
 #include "mdb_set_math.h"
 #include "graphics.h"
+#include "utils.h"
 
 class App {
 public:

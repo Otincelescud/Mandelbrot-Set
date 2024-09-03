@@ -1,6 +1,8 @@
 #include "app.h"
 
-App::App(const int width, const int height, const int max_iterations) : WIDTH(width), HEIGHT(height), MAX_ITERATIONS(max_iterations) {}
+App::App(const int width, const int height, const int max_iterations) : WIDTH(width), HEIGHT(height), MAX_ITERATIONS(max_iterations)
+{}
+
 App::~App() {}
 
 bool App::init(const char *title, int xpos, int ypos, bool fullscreen) {
@@ -13,13 +15,16 @@ bool App::init(const char *title, int xpos, int ypos, bool fullscreen) {
             is_running = false;
             return false;
         }
+        
+        GPU_Graphics::create_shader_program();
+        GPU_Graphics::setup_quad();
 
         cnt = 0;
         is_running = true;
     }
     else {
         is_running = false;
-        std::cout << "Can't initialise SDL2\n";
+        std::cerr << "Can't initialise SDL2\n";
         return false;
     }
 
@@ -36,6 +41,13 @@ void App::handle_events() {
         case SDL_QUIT:
             is_running = false;
             break;
+        case SDL_KEYDOWN:
+            switch (event.key.keysym.sym) {
+                case SDLK_ESCAPE:
+                    is_running = false;
+                    break;
+            }
+            break;
         default:
             break;
     }
@@ -48,6 +60,10 @@ void App::set_background() {
 
 void App::update() {
     cnt++;
+}
+
+void App::render() {
+    GPU_Graphics::render();
 }
 
 void App::clean() {
