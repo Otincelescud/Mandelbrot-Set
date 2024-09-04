@@ -18,26 +18,37 @@ Controls:
 - [sdl 2.30.3](https://www.libsdl.org/)
 - [glad](https://glad.dav1d.de/) for OpenGL of version at least 3.3
 
-In order to install SDL2 follow the link above and follow the instructions on the Official SDL2 Website.
-In order to install glad generate the package on the [website](https://glad.dav1d.de/) then move the include/glad and include/KHM dirs to your include path and the move the src/glad.c file to the root of the project directory.
-
 ### Building and Running
 
 In order to build the executable to run this programm run the following command:
 
 #### On Windows
+To install dependencies:
+...
+
 ```
-g++ src\main.cpp src\app.cpp src\complex.cpp src\mdb_set_math.cpp glad.c -O3 -o ".\build\Run\Mandelbrot Set.exe" -I "[Path to SDL2 include directory]" -L "[Path to SDL2 lib directory]" -lSDL2 -lGL -mwindows
-".\build\Run\Mandelbrot Set.exe"
+g++ src\main.cpp src\app.cpp src/graphics.cpp src/utils.cpp glad.c -O3 -o ".\build\run\Mandelbrot Set.exe" -I"dependencides" -L "[Path to SDL2 lib directory]" -lSDL2 -mwindows
+
+".\build\run\Mandelbrot Set.exe"
 ```
 
 #### On Linux
+To install dependencies:
+- Install SDL2 from your package manager or from the SDL2 GitHub
+- Go to [https://glad.dav1d.de/](https://glad.dav1d.de/) and download glad for core OpenGL with a version of at least 3.3
+- Unzip glad
+- Create a directory named "dependencies" and copy the glad and KHM directories from the directory you just unziped
+- Copy the glad.c file to the root directory of the project
+
+After installing the dependencies run the following commands:
+
 ```
-g++ src/main.cpp src/app.cpp src/complex.cpp src/mdb_set_math.cpp glad.c -O3 -o "./build/Run/Mandelbrot Set.out" -lSDL2 -lGL
-"./build/Run/Mandelbrot Set.out"
+g++ src/main.cpp src/app.cpp src/graphics.cpp src/utils.cpp glad.c -O3 -o "./build/run/Mandelbrot Set" -I"dependencies" -lSDL2
+
+"./build/run/Mandelbrot Set"
 ```
 
-*If you're having trouble building the program on Linux here are some flags that might help:* -lglfw3 -lGL -lX11 -lpthread -lXrandr -lXi -ldl
+If you're having trouble building the program on Linux here are some flags that might help: -lGL -lX11 -lpthread -lXrandr -lXi -ldl
 
 ## License
 
