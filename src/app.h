@@ -2,7 +2,6 @@
 #define App_h
 
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include <iostream>
 #include <cmath>
 #include <glad/glad.h>
@@ -21,8 +20,6 @@ public:
     bool init(const char *title, int xpos, int ypos, bool fullscreen);
 
     void handle_events();
-    void set_pixel_color(SDL_Surface* surface, int x, int y, int r, int g, int b);
-    void set_background();
     void update();
     void render();
     void clean();
@@ -30,13 +27,19 @@ public:
     bool running();
 
 private:
+    float get_zoom_amount(int scroll_move);
+    float get_pan_amount(int mouse_move);
+    float pan_amount[2];
+    int mouse_pos[2];
+    float zoom_fac;
+    bool left_click;
     bool is_running;
     const int WIDTH;
     const int HEIGHT;
     const int MAX_ITERATIONS;
     int cnt;
-    Complex pan;
-    long double zoom;
+    float pan[2];
+    float zoom;
 };
 
 #endif /* App_h */

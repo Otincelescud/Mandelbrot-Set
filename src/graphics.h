@@ -12,6 +12,12 @@ public:
     static void setup_quad();
     static void render();
     static void clean();
+    static void set_uniform(double var, const char* label);
+    static void set_uniform_vector(double *ptr, const char* label);
+    static void set_uniform(float var, const char* label);
+    static void set_uniform_vector(float *ptr, const char* label);
+    static void set_uniform(int var, const char* label);
+    static void set_uniform_vector(int *ptr, const char* label);
 
 private:
     static SDL_Window *window;

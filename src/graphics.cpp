@@ -37,12 +37,13 @@ bool GPU_Graphics::init_GL() {
 }
 
 bool GPU_Graphics::init_graphics(const char* w_title, int w_xpos, int w_ypos, const int w_WIDTH, const int w_HEIGHT, int w_flags) {
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 6);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
     if (create_window(w_title, w_xpos, w_ypos, w_WIDTH, w_HEIGHT, w_flags) && create_GL_context() && !SDL_GL_MakeCurrent(window, gl_context) && init_GL()) return true;
     SDL_Log("Couldn't initialize graphics");
+
     return false;
 }
 
@@ -96,7 +97,6 @@ void GPU_Graphics::create_shader_program() {
         glGetProgramInfoLog(shader_program, 512, NULL, infoLog);
         SDL_Log("ERROR::PROGRAM::LINKING_FAILED\n%s", infoLog);
     }
-    SDL_Log("%i, %i, %i", shader_program, VAO, VBO);
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 }
@@ -119,5 +119,34 @@ void GPU_Graphics::setup_quad() {
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
-    SDL_Log("%i, %i, %i", shader_program, VAO, VBO);
+}
+
+void GPU_Graphics::set_uniform(double var, const char* label) {
+    GLenum uniformLoc =  glGetUniformLocation(shader_program, label);
+    glUniform1d(uniformLoc, var);
+}
+
+void GPU_Graphics::set_uniform_vector(double *ptr, const char* label) {
+    GLenum uniformLoc =  glGetUniformLocation(shader_program, label);
+    glUniform2dv(uniformLoc, 1, ptr);
+}
+
+void GPU_Graphics::set_uniform(int var, const char* label) {
+    GLenum uniformLoc =  glGetUniformLocation(shader_program, label);
+    glUniform1i(uniformLoc, var);
+}
+
+void GPU_Graphics::set_uniform_vector(int *ptr, const char* label) {
+    GLenum uniformLoc =  glGetUniformLocation(shader_program, label);
+    glUniform2iv(uniformLoc, 1, ptr);
+}
+
+void GPU_Graphics::set_uniform(float var, const char* label) {
+    GLenum uniformLoc =  glGetUniformLocation(shader_program, label);
+    glUniform1f(uniformLoc, var);
+}
+
+void GPU_Graphics::set_uniform_vector(float *ptr, const char* label) {
+    GLenum uniformLoc =  glGetUniformLocation(shader_program, label);
+    glUniform2fv(uniformLoc, 1, ptr);
 }
