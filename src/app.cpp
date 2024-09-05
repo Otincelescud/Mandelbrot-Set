@@ -56,8 +56,8 @@ void App::handle_events() {
                 zoom_fac = get_zoom_amount(event.wheel.y);
                 break;
             case SDL_MOUSEMOTION:
-                pan_amount[0] = -get_pan_amount(event.motion.xrel);
-                pan_amount[1] = get_pan_amount(event.motion.yrel);
+                pan_amount[0] += -get_pan_amount(event.motion.xrel);
+                pan_amount[1] += get_pan_amount(event.motion.yrel);
                 mouse_pos[0] = event.motion.x;
                 mouse_pos[1] = HEIGHT-event.motion.y;
                 break;
