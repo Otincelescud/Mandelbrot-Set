@@ -11,6 +11,7 @@ std::string Utils::read_file_source(const char* filePath) {
         shaderFile.close();
     } else {
         SDL_Log("ERROR::UTILS::FILE_NOT_SUCCESFULLY_READ: %s", filePath);
+        return "";
     }
     return code;
 }
