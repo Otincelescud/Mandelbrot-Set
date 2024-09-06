@@ -33,11 +33,12 @@ private:
     float zoom_fac;
     bool left_click;
     bool is_running;
-    const int WIDTH;
-    const int HEIGHT;
     const int MAX_ITERATIONS;
     int cnt;
     float pan[2];
+    const int WIDTH;
+    const int HEIGHT;
+    int DIMENSIONS[2];
     float zoom;
 };
 

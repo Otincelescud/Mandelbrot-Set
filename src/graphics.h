@@ -18,6 +18,8 @@ public:
     static void set_uniform_vector(float *ptr, const char* label);
     static void set_uniform(int var, const char* label);
     static void set_uniform_vector(int *ptr, const char* label);
+    static unsigned int get_shader_program();
+    static SDL_Window *get_window();
 
 private:
     static SDL_Window *window;

@@ -121,7 +121,7 @@ void GPU_Graphics::setup_quad() {
     glBindVertexArray(0);
 }
 
-void GPU_Graphics::set_uniform(double var, const char* label) {
+void GPU_Graphics::set_uniform(const double var, const char* label) {
     GLenum uniformLoc =  glGetUniformLocation(shader_program, label);
     glUniform1d(uniformLoc, var);
 }
@@ -150,3 +150,6 @@ void GPU_Graphics::set_uniform_vector(float *ptr, const char* label) {
     GLenum uniformLoc =  glGetUniformLocation(shader_program, label);
     glUniform2fv(uniformLoc, 1, ptr);
 }
+
+unsigned int GPU_Graphics::get_shader_program() { return shader_program; }
+SDL_Window *GPU_Graphics::get_window() { return window; }
