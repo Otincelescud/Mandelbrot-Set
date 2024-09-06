@@ -7,13 +7,24 @@ App::~App() {}
 
 bool App::init(const char *title, int xpos, int ypos, bool fullscreen) {
     int flags = 0;
-    if (fullscreen) {
-        flags = SDL_WINDOW_FULLSCREEN;
-        
-    }
+    DIMENSIONS[0] = WIDTH, DIMENSIONS[1] = HEIGHT;
 
     if (SDL_Init(SDL_INIT_VIDEO) == 0) {
-        if (!GPU_Graphics::init_graphics(title, xpos, ypos, WIDTH, HEIGHT, flags | SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN)) {
+        if (fullscreen) {
+            flags = SDL_WINDOW_FULLSCREEN;
+            
+            SDL_DisplayMode displayMode;
+
+            // Get the display mode of the primary display (index 0)
+            if (SDL_GetCurrentDisplayMode(0, &displayMode) != 0) {
+                SDL_Log("SDL_GetCurrentDisplayMode Error: %s", SDL_GetError());
+                SDL_Quit();
+                return false;
+            }
+            DIMENSIONS[0] = displayMode.w; DIMENSIONS[1] = displayMode.h;
+        }
+
+        if (!GPU_Graphics::init_graphics(title, xpos, ypos, DIMENSIONS[0], DIMENSIONS[1], flags | SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN)) {
             SDL_Quit();
             is_running = false;
             return false;
@@ -28,9 +39,6 @@ bool App::init(const char *title, int xpos, int ypos, bool fullscreen) {
         is_running = true;
 
         GPU_Graphics::set_uniform(MAX_ITERATIONS, "MAX_ITERATIONS");
-
-        SDL_GetWindowSize(GPU_Graphics::get_window(), DIMENSIONS, DIMENSIONS+1);
-        
         GPU_Graphics::set_uniform_vector(DIMENSIONS, "DIMS");
     }
     else {
